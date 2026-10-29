@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleIdentifier</key>
+  <string>io.github.p4suta.yomydev</string>
+  <key>CFBundleName</key>
+  <string>yomydev</string>
+  <key>NSCameraUsageDescription</key>
+  <string>yomydev analyses a few camera frames in memory to tell an AI agent whether you are at this Mac. Frames are never stored.</string>
+</dict>
+</plist>

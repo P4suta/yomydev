@@ -1,0 +1,14 @@
+[package]
+name = "yomydev-core"
+description = "Pure presence decision of yomydev: desk facts and camera sight in, verdict out."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords = ["presence", "agent", "camera"]
+categories = ["no-std"]
+
+[lints]
+workspace = true

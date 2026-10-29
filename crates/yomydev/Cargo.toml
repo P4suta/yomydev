@@ -1,0 +1,82 @@
+[package]
+name = "yomydev"
+description = "Tells an AI agent whether its owner is at this Mac."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords = ["presence", "agent", "mcp", "camera"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+yomydev-core.workspace = true
+serde_json.workspace = true
+
+[target.'cfg(target_os = "macos")'.dependencies]
+block2.workspace = true
+dispatch2.workspace = true
+objc2.workspace = true
+objc2-av-foundation = { workspace = true, features = [
+  "std",
+  "block2",
+  "dispatch2",
+  "objc2-core-media",
+  "AVCaptureDevice",
+  "AVCaptureInput",
+  "AVCaptureOutputBase",
+  "AVCaptureSession",
+  "AVCaptureSessionPreset",
+  "AVCaptureVideoDataOutput",
+  "AVMediaFormat",
+] }
+objc2-core-foundation = { workspace = true, features = [
+  "std",
+  "CFDictionary",
+  "CFNumber",
+  "CFString",
+] }
+objc2-core-graphics = { workspace = true, features = [
+  "std",
+  "libc",
+  "CGDirectDisplay",
+  "CGDisplayConfiguration",
+  "CGEventSource",
+  "CGEventTypes",
+  "CGSession",
+] }
+objc2-core-media = { workspace = true, features = [
+  "std",
+  "objc2-core-video",
+  "CMBase",
+  "CMSampleBuffer",
+] }
+objc2-core-video = { workspace = true, features = [
+  "std",
+  "CVBase",
+  "CVBuffer",
+  "CVImageBuffer",
+  "CVPixelBuffer",
+  "CVReturn",
+] }
+objc2-foundation = { workspace = true, features = [
+  "std",
+  "NSArray",
+  "NSDictionary",
+  "NSObject",
+  "NSString",
+  "NSValue",
+] }
+objc2-vision = { workspace = true, features = [
+  "std",
+  "objc2-core-media",
+  "VNObservation",
+  "VNRequest",
+  "VNRequestHandler",
+  "VNDetectFaceRectanglesRequest",
+  "VNDetectHumanRectanglesRequest",
+] }
+
+[lints]
+workspace = true

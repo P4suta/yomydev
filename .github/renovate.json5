@@ -1,0 +1,17 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  // The shared preset holds the schedule, grouping, digest pins, and automerge policy.
+  extends: ['github>P4suta/renovate-config'],
+  // Version changes arrive only through these managers, as pull requests that pass the required checks.
+  enabledManagers: ['github-actions', 'mise', 'cargo', 'dockerfile'],
+  packageRules: [
+    {
+      // The Dockerfile manager infers no Debian suite from a base image, so the pinned apt packages name the bookworm archives.
+      matchDatasources: ['deb'],
+      registryUrls: [
+        'https://deb.debian.org/debian?suite=bookworm&components=main&binaryArch=amd64',
+        'https://deb.debian.org/debian-security?suite=bookworm-security&components=main&binaryArch=amd64',
+      ],
+    },
+  ],
+}

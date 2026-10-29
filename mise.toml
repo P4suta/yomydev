@@ -1,0 +1,49 @@
+[tools]
+rust = { version = "1.99.1", components = [
+  "clippy",
+  "rustfmt",
+], targets = "thumbv7em-none-eabi" }
+taplo = "0.10.0"
+typos = "1.51.1"
+lefthook = "2.2.2"
+"aqua:EmbarkStudios/cargo-deny" = "0.20.2"
+
+[env]
+KANI_IMAGE = "celestite-kani@sha256:0c201363bd7bf9d6dfca26f3de54546d1a804a9b2b17668146987bcf540055ee"
+
+[tasks.fmt]
+description = "Format Rust and TOML"
+run = ["cargo fmt --all", "taplo fmt"]
+
+[tasks."fmt:check"]
+description = "Fail if anything is unformatted"
+run = ["cargo fmt --all --check", "taplo fmt --check"]
+
+[tasks.clippy]
+description = "Lint every target with the workspace's strict lint set"
+run = "cargo clippy --workspace --all-targets -- -D warnings"
+
+[tasks.test]
+description = "Run every test on this host"
+run = "cargo test --workspace"
+
+[tasks.pure]
+description = "Prove the decision core cannot do I/O by building it for bare metal"
+run = "cargo build --package yomydev-core --target thumbv7em-none-eabi"
+
+[tasks.kani]
+description = "Prove the decision core's properties in the bounded Kani container"
+run = "dotfiles bounded run --image \"$KANI_IMAGE\" --project . -- cargo kani --package yomydev-core"
+
+[tasks.deny]
+description = "Check dependency licenses, advisories, and sources"
+run = "cargo deny check"
+
+[tasks.check]
+description = "The fast gate: formatting, lints, tests, the bare-metal core, spelling, and dependencies"
+depends = ["fmt:check", "clippy", "test", "pure", "deny"]
+run = "typos"
+
+[tasks.install]
+description = "Install the binary from this checkout"
+run = "cargo install --locked --path crates/yomydev"
