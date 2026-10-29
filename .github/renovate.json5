@@ -3,7 +3,7 @@
   // The shared preset holds the schedule, grouping, digest pins, and automerge policy.
   extends: ['github>P4suta/renovate-config'],
   // Version changes arrive only through these managers, as pull requests that pass the required checks.
-  enabledManagers: ['mise', 'cargo', 'dockerfile'],
+  enabledManagers: ['github-actions', 'mise', 'cargo', 'dockerfile'],
   packageRules: [
     {
       // The Dockerfile manager infers no Debian suite from a base image, so the pinned apt packages name the bookworm archives.
