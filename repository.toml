@@ -1,0 +1,6 @@
+name = "yomydev"
+summary = "Let AI agents check whether you're at your Mac before they wait on you"
+install = "cargo install --locked --git https://github.com/P4suta/yomydev yomydev\nclaude mcp add --scope user yomydev -- ~/.cargo/bin/yomydev mcp\nyomydev grant"
+usage = "yomydev check"
+copyright = "Yasunobu"
+license = "MIT OR Apache-2.0"
